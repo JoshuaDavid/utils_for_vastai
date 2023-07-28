@@ -17,7 +17,11 @@ function project_name {
 }
 
 function vast_venv_location {
-    echo "$HOME/.util_for_vastai/venv";
+    echo "$UTILS_FOR_VAST_LOCATION/venv";
+}
+
+function vast_requirements_location {
+    echo "$UTILS_FOR_VAST_LOCATION/requirements.txt";
 }
 
 function virtual_env_stack_push {
@@ -59,10 +63,10 @@ function vast_venv_up {
     if [[ "${VIRTUAL_ENV:-}" != "$(realpath "$(vast_venv_location)")" ]]; then
         source "$(vast_venv_location)/bin/activate"
     fi
-    if ! cmp --silent <(cat vastai/requirements.txt) <(pip freeze); then
+    if ! cmp --silent <(cat "$(vast_requirements_location)") <(pip freeze); then
         echo "$(vast_venv_location) does not have all requirements installed, installing.";
-        pip install -r vastai/requirements.txt
-        pip freeze > vastai/requirements.txt
+        pip install -r "$(vast_requirements_location)"
+        pip freeze > "$(vast_requirements_location)"
     fi
 }
 
@@ -254,7 +258,7 @@ function vast_setup_auto_remote {
         chmod +x hooks/post-receive;
     ";
     git remote remove vast || true
-    git remote add vast "$VAST_SSH_URL/workspace/neuroscope.git"
+    git remote add vast "${VAST_SSH_URL}${PROJECT_GIT_DIR_Q}"
     git push vast main
     ssh -o LogLevel=error "$VAST_SSH_URL" "
         set -euxo pipefail

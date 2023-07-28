@@ -12,7 +12,8 @@ git clone https://github.com/JoshuaDavid/utils_for_vastai.git "$HOME/utils_for_v
 ```
 2. Source the util script in your `$HOME/.bashrc` or similar by adding the following line:
 ```sh
-source "$HOME/utils_for_vastai/vast_utils.sh";
+export UTILS_FOR_VAST_LOCATION="$HOME/utils_for_vastai";
+source "$UTILS_FOR_VAST_LOCATION/vast_utils.sh";
 ```
 
 ## Setting up an instance on vast.ai 
