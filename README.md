@@ -4,19 +4,20 @@ This directory contains helpers for specifically building and running Neuroscope
 
 If you *are* using vast.ai, read on.
 
-## Setting up your local environment
+## Installation
 
-You will need to `source vastai/vast_utils.sh` within your `~/.bashrc` or equivalent to gain access to helper functions. After adding this, you will either need to restart your shell, or run the command
-
+1. Clone the repo
 ```sh
-source vastai/vast_utils.sh
+git clone https://github.com/JoshuaDavid/utils_for_vastai.git "$HOME/utils_for_vastai";
 ```
-
-within your current shell.
+2. Source the util script in your `$HOME/.bashrc` or similar by adding the following line:
+```sh
+source "$HOME/utils_for_vastai/vast_utils.sh";
+```
 
 ## Setting up an instance on vast.ai 
 
-Run the following command:
+Run the following command in whatever repository you are working in (_not_ in the "$HOME/utils_for_vastai" repo):
 
 ```sh
 vast_setup_auto_remote
